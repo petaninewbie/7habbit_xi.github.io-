@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal 7 Kebiasaan Anak Indonesia Hebat - SMKN 4 Jakarta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-primary {
+            background: linear-gradient(135deg, #667eea 0%, #00D4FF 100%);
+        }
+        
+        .gradient-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .gradient-success {
+            background: linear-gradient(135deg, #4facfe 0%, #1F68C2 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .habit-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+        }
+        
+        .habit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .checkbox-modern {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: white;
+        }
+        
+        .checkbox-modern.checked {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-color: #10b981;
+            transform: scale(1.1);
+        }
+        
+        .checkbox-modern.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: 800;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+        
+        .prayer-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3b82f6;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            background: white;
+        }
+        
+        .prayer-checkbox.checked {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-color: #3b82f6;
+            transform: scale(1.05);
+        }
+        
+        .prayer-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: 700;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 11px;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .progress-ring {
+            transition: stroke-dasharray 0.5s ease-in-out;
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media print {
+            body { background: white !important; }
+            .no-print { display: none !important; }
+            .print-friendly { 
+                background: white !important; 
+                color: black !important; 
+                box-shadow: none !important;
+            }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .input-modern {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .input-modern:focus {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn-modern {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-modern:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen">
+    
+    <!-- Login Page -->
+    <div id="loginPage" class="min-h-screen flex items-center justify-center p-4">
+        <div class="absolute inset-0 gradient-primary opacity-90"></div>
+        <div class="relative z-10 glass-effect rounded-3xl p-8 w-full max-w-md animate-slide-up">
+            <div class="text-center mb-8">
+                <div class="bg-white bg-opacity-20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+                    <span class="text-4xl">🏫</span>
+                </div>
+                <h1 class="text-3xl font-bold text-black mb-2">SMKN 4 Jakarta</h1>
+                <h2 class="text-xl font-semibold text-black-100 mb-2">Jurnal 7 Kebiasaan</h2>
+                <p class="text-black-200 text-sm">Anak Indonesia Hebat</p>
+            </div>
+
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-semibold text-white mb-3">Pilih Jenis Akun</label>
+                    <select id="accountType" class="w-full p-4 input-modern rounded-xl focus:outline-none">
+                        <option value="">-- Pilih Jenis Akun --</option>
+                        <option value="student">👨‍🎓 Siswa</option>
+                        <option value="teacher">👩‍🏫 Guru Wali</option>
+                    </select>
+                </div>
+
+                <div id="studentFields" style="display: none;" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-3">Kelas</label>
+                        <select id="studentClass" class="w-full p-4 input-modern rounded-xl focus:outline-none">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="XI-TKJ">XI TKJ </option>
+                            <option value="XI-TITL-1">XI TITL 1</option>
+                            <option value="XI-TITL-2">XI TITL 2</option>
+                            <option value="XI-TEI-1">XI TEI 1</option>
+                            <option value="XI-TEI-2">XI TEI 2</option>
+                            <option value="XI-TMK">XI TMK</option>
+                            <option value="XI-TAV">XI TAV</option>
+                            <option value="XI-TPL">XI TPL</option>
+                            <option value="XI-TKR-1">XI TKR 1</option>
+                            <option value="XI-TKR-2">XI TKR 2</option>
+                            <option value="XI-TP-1">XI TP 1</option>
+                            <option value="XI-TP-2">XI TP 2</option>
+                            <option value="XI-DTF">XI DTF</option>
+                            <option value="XI-TKP-1">XI TKP 1</option>
+                            <option value="XI-TKP-2">XI TKP 2</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-3">Nama Siswa</label>
+                        <select id="studentName" class="w-full p-4 input-modern rounded-xl focus:outline-none">
+                            <option value="">-- Pilih Nama --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-3">Agama</label>
+                        <select id="studentReligion" class="w-full p-4 input-modern rounded-xl focus:outline-none">
+                            <option value="">-- Pilih Agama --</option>
+                            <option value="Islam">🕌 Islam</option>
+                            <option value="Kristen">⛪ Kristen</option>
+                            <option value="Katolik">✝️ Katolik</option>
+                            <option value="Hindu">🕉️ Hindu</option>
+                            <option value="Buddha">☸️ Buddha</option>
+                            <option value="Konghucu">☯️ Konghucu</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="teacherFields" style="display: none;">
+                    <div>
+                        <label class="block text-sm font-semibold text-white mb-3">Guru Wali</label>
+                        <select id="teacherName" class="w-full p-4 input-modern rounded-xl focus:outline-none">
+                            <option value="">-- Pilih Nama Guru --</option>
+                            <option value="Hanifah Dyah Ayuni, S.Pd.">Hanifah Dyah Ayuni, S.Pd.</option>
+                            <option value="Ir. Suwito. S. Pd.,S.T., IPM">Ir. Suwito. S. Pd.,S.T., IPM</option>
+                            <option value="Hana Dwi Windayati, S.Pd.">Hana Dwi Windayati, S.Pd.</option>
+                            <option value="Sutrisno, S.Pd.">Sutrisno, S.Pd.</option>
+                            <option value="Yuko Arum Larasati, S.Pd.">Yuko Arum Larasati, S.Pd.</option>
+							<option value="Ardiansyah Marzani, ST. CHSE.">Ardiansyah Marzani, ST. CHSE.</option>
+                            <option value="M. Nasir Firmansyah, S.T.">M. Nasir Firmansyah, S.T.</option>
+                            <option value="Hilda Nurul Mawaddah, M.Pd.">Hilda Nurul Mawaddah, M.Pd.</option>
+                            <option value="Dra. Lestari">Dra. Lestari</option>
+                            <option value="Hendarko Ghany Setyawan, S.Pd.">Hendarko Ghany Setyawan, S.Pd.</option>
+							<option value="Sayoga Adi Pramudya, S.Pd.">Sayoga Adi Pramudya, S.Pd.</option>
+                            <option value="Risma Riyani, S.Pd.">Risma Riyani, S.Pd.</option>
+                            <option value="Sunartini, S.Ag.">Sunartini, S.Ag.</option>
+                            <option value="Rita Sahara Saud, M.Pd.">Rita Sahara Saud, M.Pd.</option>
+                            <option value="Sunarto, S.Pd.">Sunarto, S.Pd.</option>
+							<option value="Rahmad Misin, S.Pd.">Rahmad Misin, S.Pd.</option>
+                            <option value="Alwisman, S.Pd.">Alwisman, S.Pd.</option>
+                            <option value="Sri Wahyuningsih, S.Pd.">Sri Wahyuningsih, S.Pd.</option>
+                            <option value="Ifan Faizal Firmansyah, S.Pd.">Ifan Faizal Firmansyah, S.Pd.</option>
+                            <option value="Rr. Siwi Susmiyatun, S.Pd.">Rr. Siwi Susmiyatun, S.Pd.</option>
+							<option value="Sopwatillah, M.Pd.">Sopwatillah, M.Pd.</option>
+                            <option value="Khulasoh, S.Pd.">Khulasoh, S.Pd.</option>
+                            <option value="Erwan Lunarko, M.Pd.">Erwan Lunarko, M.Pd.</option>
+                            <option value="Yuddy Kardi, S.Sn.">Yuddy Kardi, S.Sn.</option>
+							<option value="Jefri Bramulia, S.Pd.">Jefri Bramulia, S.Pd.</option>
+                            <option value="Muhammad Syaeful Amin, S.Pd.">Muhammad Syaeful Amin, S.Pd.</option>
+                        
+						</select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-red mb-3">Password</label>
+                    <input type="password" id="password" class="w-full p-4 input-modern rounded-xl focus:outline-none" placeholder="Masukkan password">
+                </div>
+
+                <button type="submit" class="w-full btn-modern text-lg font-bold py-4">
+                    🔐 Masuk ke Aplikasi
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-red-400 text-sm">Password default: <span class="font-semibold">smkn4jakarta</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDashboard" style="display: none;" class="min-h-screen">
+        <!-- Header -->
+        <header class="gradient-primary text-white shadow-2xl no-print">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-center md:text-left mb-4 md:mb-0">
+                        <h1 class="text-2xl md:text-3xl font-bold">SMKN 4 Jakarta</h1>
+                        <p class="text-blue-100 text-lg">Jurnal 7 Kebiasaan Anak Indonesia Hebat</p>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="font-semibold text-lg" id="studentInfo"></p>
+                        <button onclick="logout()" class="text-blue-200 hover:text-white text-sm mt-1 transition-colors">
+                            🚪 Keluar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container mx-auto px-4 py-8 max-w-6xl">
+            <!-- Date and Progress Section -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- Date Card -->
+                <div class="bg-white rounded-2xl p-6 card-shadow animate-fade-in print-friendly">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">📅</div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2" id="currentDate"></h2>
+                        <p class="text-gray-600 text-lg" id="currentDay"></p>
+                    </div>
+                </div>
+                
+                <!-- Progress Card -->
+                <div class="bg-white rounded-2xl p-6 card-shadow animate-fade-in print-friendly">
+                    <div class="text-center">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Progress Hari Ini</h3>
+                        <div class="relative w-24 h-24 mx-auto mb-4">
+                            <svg class="w-24 h-24 transform -rotate-90">
+                                <circle cx="48" cy="48" r="40" stroke="#e5e7eb" stroke-width="8" fill="transparent"></circle>
+                                <circle id="progressCircle" cx="48" cy="48" r="40" stroke="url(#gradient)" stroke-width="8" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="251.2" class="progress-ring"></circle>
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-gray-800" id="progressPercentage">0%</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600" id="progressText">0/7 Kebiasaan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habits Form -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow mb-8 animate-fade-in print-friendly">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-2">📝 Jurnal Kebiasaan Harian</h3>
+                    <p class="text-gray-600">Centang kebiasaan yang sudah kamu lakukan hari ini</p>
+                </div>
+                
+                <div class="grid gap-6">
+                    <!-- Habit 1: Bangun Pagi -->
+                    <div class="habit-card bg-gradient-to-r from-orange-50 to-orange-100 p-6 border-l-4 border-orange-400">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🌅</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">1. Bangun Pagi</h4>
+                                    <p class="text-gray-600">Bangun sebelum jam 06.00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-col">
+                                    <label class="text-xs text-gray-500 mb-1">Jam bangun:</label>
+                                    <input type="time" id="wakeTime" class="p-2 border-2 border-gray-200 rounded-lg text-sm focus:border-orange-400 focus:outline-none">
+                                </div>
+                                <div class="checkbox-modern" onclick="toggleHabit(0)" data-habit="0"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Habit 2: Beribadah -->
+                    <div class="habit-card bg-gradient-to-r from-blue-50 to-blue-100 p-6 border-l-4 border-blue-400">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🙏</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">2. Beribadah</h4>
+                                    <p class="text-gray-600">Melaksanakan ibadah sesuai agama dan kepercayaan</p>
+                                </div>
+                            </div>
+                            <div class="checkbox-modern" onclick="toggleHabit(1)" data-habit="1"></div>
+                        </div>
+                        
+                        <!-- Prayer Times for Muslims -->
+                        <div id="prayerTimes" style="display: none;" class="mt-6 bg-white bg-opacity-60 rounded-xl p-6">
+                            <h5 class="font-bold text-gray-700 mb-4 text-center">⏰ Checklist Waktu Sholat</h5>
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                                <div class="flex flex-col items-center space-y-2 p-3 bg-white rounded-lg">
+                                    <div class="prayer-checkbox" onclick="togglePrayer(0)" data-prayer="0"></div>
+                                    <span class="text-sm font-medium">Subuh</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2 p-3 bg-white rounded-lg">
+                                    <div class="prayer-checkbox" onclick="togglePrayer(1)" data-prayer="1"></div>
+                                    <span class="text-sm font-medium">Dzuhur</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2 p-3 bg-white rounded-lg">
+                                    <div class="prayer-checkbox" onclick="togglePrayer(2)" data-prayer="2"></div>
+                                    <span class="text-sm font-medium">Ashar</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2 p-3 bg-white rounded-lg">
+                                    <div class="prayer-checkbox" onclick="togglePrayer(3)" data-prayer="3"></div>
+                                    <span class="text-sm font-medium">Maghrib</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2 p-3 bg-white rounded-lg">
+                                    <div class="prayer-checkbox" onclick="togglePrayer(4)" data-prayer="4"></div>
+                                    <span class="text-sm font-medium">Isya</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold" id="prayerProgress">0/5 sholat</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Habit 3: Berolahraga -->
+                    <div class="habit-card bg-gradient-to-r from-green-50 to-green-100 p-6 border-l-4 border-green-400">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🏃‍♂️</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">3. Berolahraga</h4>
+                                    <p class="text-gray-600">Aktivitas fisik minimal 30 menit</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-col">
+                                    <label class="text-xs text-gray-500 mb-1">Jenis olahraga:</label>
+                                    <input type="text" id="exerciseType" placeholder="Contoh: Jogging" class="p-2 border-2 border-gray-200 rounded-lg text-sm w-32 focus:border-green-400 focus:outline-none">
+                                </div>
+                                <div class="checkbox-modern" onclick="toggleHabit(2)" data-habit="2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Habit 4: Makan Sehat -->
+                    <div class="habit-card bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 border-l-4 border-yellow-400">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🥗</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">4. Makan Sehat dan Bergizi</h4>
+                                    <p class="text-gray-600">Konsumsi makanan bergizi seimbang (4 sehat 5 sempurna)</p>
+                                </div>
+                            </div>
+                            <div class="checkbox-modern" onclick="toggleHabit(3)" data-habit="3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Habit 5: Gemar Belajar -->
+                    <div class="habit-card bg-gradient-to-r from-purple-50 to-purple-100 p-6 border-l-4 border-purple-400">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">📚</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">5. Gemar Belajar</h4>
+                                    <p class="text-gray-600">Belajar mandiri di luar jam sekolah</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-col">
+                                    <label class="text-xs text-gray-500 mb-1">Durasi (menit):</label>
+                                    <input type="number" id="studyDuration" placeholder="60" min="0" max="480" class="p-2 border-2 border-gray-200 rounded-lg text-sm w-20 focus:border-purple-400 focus:outline-none">
+                                </div>
+                                <div class="checkbox-modern" onclick="toggleHabit(4)" data-habit="4"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Habit 6: Bermasyarakat -->
+                    <div class="habit-card bg-gradient-to-r from-pink-50 to-pink-100 p-6 border-l-4 border-pink-400">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">🤝</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">6. Bermasyarakat</h4>
+                                    <p class="text-gray-600">Berinteraksi positif dengan lingkungan sekitar</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-col">
+                                    <label class="text-xs text-gray-500 mb-1">Kegiatan:</label>
+                                    <input type="text" id="socialActivity" placeholder="Contoh: Gotong royong" class="p-2 border-2 border-gray-200 rounded-lg text-sm w-32 focus:border-pink-400 focus:outline-none">
+                                </div>
+                                <div class="checkbox-modern" onclick="toggleHabit(5)" data-habit="5"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Habit 7: Tidur Cepat -->
+                    <div class="habit-card bg-gradient-to-r from-indigo-50 to-indigo-100 p-6 border-l-4 border-indigo-400">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <span class="text-3xl mr-4">😴</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg">7. Tidur Cepat</h4>
+                                    <p class="text-gray-600">Tidur sebelum jam 22.00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-col">
+                                    <label class="text-xs text-gray-500 mb-1">Jam tidur:</label>
+                                    <input type="time" id="sleepTime" class="p-2 border-2 border-gray-200 rounded-lg text-sm focus:border-indigo-400 focus:outline-none">
+                                </div>
+                                <div class="checkbox-modern" onclick="toggleHabit(6)" data-habit="6"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center no-print">
+                    <button onclick="submitJournal()" class="btn-modern bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-8 py-4 text-lg font-bold">
+                        📤 Kirim ke Guru
+                    </button>
+                    <button onclick="exportStudentPDF()" class="btn-modern bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 px-8 py-4 text-lg font-bold">
+                        📄 Export PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Student Journal History -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow animate-fade-in print-friendly">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">📊 Riwayat Jurnal Saya</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+                            <tr>
+                                <th class="p-4 text-left font-semibold">Tanggal</th>
+                                <th class="p-4 text-center font-semibold">Bangun Pagi</th>
+                                <th class="p-4 text-center font-semibold">Beribadah</th>
+                                <th class="p-4 text-center font-semibold">Olahraga</th>
+                                <th class="p-4 text-center font-semibold">Makan Sehat</th>
+                                <th class="p-4 text-center font-semibold">Belajar</th>
+                                <th class="p-4 text-center font-semibold">Bermasyarakat</th>
+                                <th class="p-4 text-center font-semibold">Tidur Cepat</th>
+                                <th class="p-4 text-center font-semibold">Skor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentHistoryTable">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Dashboard -->
+    <div id="teacherDashboard" style="display: none;" class="min-h-screen">
+        <!-- Header -->
+        <header class="gradient-primary text-white shadow-2xl no-print">
+            <div class="container mx-auto px-4 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-center md:text-left mb-4 md:mb-0">
+                        <h1 class="text-2xl md:text-3xl font-bold">Dashboard Guru - SMKN 4 Jakarta</h1>
+                        <p class="text-blue-100 text-lg">Monitoring Jurnal 7 Kebiasaan Siswa</p>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="font-semibold text-lg" id="teacherInfo"></p>
+                        <button onclick="logout()" class="text-blue-200 hover:text-white text-sm mt-1 transition-colors">
+                            🚪 Keluar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container mx-auto px-4 py-8">
+            <!-- Filter Section -->
+            <div class="bg-white rounded-2xl p-6 card-shadow mb-8 animate-fade-in no-print">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">🔍 Filter Data</h3>
+                <div class="grid md:grid-cols-5 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Kelas</label>
+                        <select id="classFilter" class="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                            <option value="">Semua Kelas</option>
+                            							<option value="X-TKJ">X TKJ </option>
+                            <option value="XI-TITL-1">XI TITL 1</option>
+                            <option value="XI-TITL-2">XI TITL 2</option>
+                            <option value="XI-TEI-1">XI TEI 1</option>
+                            <option value="XI-TEI-2">XI TEI 2</option>
+                            <option value="XI-TMK">XI TMK</option>
+                            <option value="XI-TAV">XI TAV</option>
+                            <option value="XI-TPL">XI TPL</option>
+                            <option value="XI-TKR-1">XI TKR 1</option>
+                            <option value="XI-TKR-2">XI TKR 2</option>
+                            <option value="XI-TP-1">XI TP 1</option>
+                            <option value="XI-TP-2">XI TP 2</option>
+                            <option value="XI-DTF">XI DTF</option>
+                            <option value="XI-TKP-1">XI TKP 1</option>
+                            <option value="XI-TKP-2">XI TKP 2</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Tanggal</label>
+                        <input type="date" id="dateFilter" class="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Agama</label>
+                        <select id="religionFilter" class="w-full p-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none">
+                            <option value="">Semua Agama</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen">Kristen</option>
+                            <option value="Katolik">Katolik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Buddha">Buddha</option>
+                            <option value="Konghucu">Konghucu</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="applyFilters()" class="w-full btn-modern py-3">
+                            🔍 Filter Data
+                        </button>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="exportTeacherPDF()" class="w-full btn-modern bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 py-3">
+                            📄 Export PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="grid md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl p-6 card-shadow animate-fade-in">
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">👥</div>
+                        <div class="text-3xl font-bold" id="totalStudents">0</div>
+                        <div class="text-blue-100 font-medium">Total Siswa</div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl p-6 card-shadow animate-fade-in">
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">📝</div>
+                        <div class="text-3xl font-bold" id="todaySubmissions">0</div>
+                        <div class="text-green-100 font-medium">Jurnal Hari Ini</div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-2xl p-6 card-shadow animate-fade-in">
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">📊</div>
+                        <div class="text-3xl font-bold" id="averageCompletion">0%</div>
+                        <div class="text-yellow-100 font-medium">Rata-rata Kebiasaan</div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-2xl p-6 card-shadow animate-fade-in">
+                    <div class="text-center">
+                        <div class="text-4xl mb-2">🏫</div>
+                        <div class="text-3xl font-bold" id="activeClasses">0</div>
+                        <div class="text-purple-100 font-medium">Kelas Aktif</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Students Journal Table -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow animate-fade-in print-friendly">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">📋 Data Jurnal Semua Siswa</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
+                            <tr>
+                                <th class="p-4 text-left font-semibold">Tanggal</th>
+                                <th class="p-4 text-left font-semibold">Nama Siswa</th>
+                                <th class="p-4 text-left font-semibold">Kelas</th>
+                                <th class="p-4 text-left font-semibold">Agama</th>
+                                <th class="p-4 text-center font-semibold">Bangun Pagi</th>
+                                <th class="p-4 text-center font-semibold">Beribadah</th>
+                                <th class="p-4 text-center font-semibold">Olahraga</th>
+                                <th class="p-4 text-center font-semibold">Makan Sehat</th>
+                                <th class="p-4 text-center font-semibold">Belajar</th>
+                                <th class="p-4 text-center font-semibold">Bermasyarakat</th>
+                                <th class="p-4 text-center font-semibold">Tidur Cepat</th>
+                                <th class="p-4 text-center font-semibold">Skor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allJournalsTable">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button id="floatingBtn" class="floating-btn gradient-primary text-white no-print" onclick="scrollToTop()" style="display: none;">
+        ⬆️
+    </button>
+
+    <script>
+        // Enhanced sample data with more realistic names
+        const studentsData = {
+            'XI-TKJ': ["AHMAD DANU ARJUNO SETIAWAN","AJI FIYAN AMINULLAH","ALUNA ZHAYURIE","ANDIK ARDIANSYAH","ARYA SENA MAULANA IBRAHIM","ASTY ZULFANI","AURA AULIA PRASTIKA DEWI","AYRA NUR RAHAYU","BRATA WIJAYA","DANIEL JULIANO ETIDENA","DUDE AHMAD ALFATHRIZKI","EVELYN NATALIA YERMIAS","FARID ADINATA","FATIN SAHIRA AZWA","GHINA SHAFA WAHYUNI","IRSYAD MAULANA AMSORI","KASIH ROSALINDA PARDEDE","MASDIANA PUTRI","MUHAMMAD BILAL AGUSTIAN","MUHAMMAD FATURRAHMAN","MUHAMMAD MEIKEL RIFAI","NAZWA RAHMATUL HASSANAH","NOLA VENYA LATIVAH","NURUL FADHILAH","POPPY SARI DEWI","PUTRI NOVIYANTI","QATRUNADA ASSYIFA","RAKHA ABDUL HANIF","REVAND RADITHYA LUTFI","RIFTO RAMDANI","SULISTYO NUR RAMADHAN PRIAMBODO","SULTAN MAHMUD","TANIA RISTIANTI PUTRI","WIRYAWAN DWI ATMAJA","WULAN NAYAH","WULAN PUSPITA DEWI"],
+            'XI-TITL-1': ["ADINDA NURAENI","ADITYA PUTRA MAJAH","AFGANI RAIHAN","AHMAD SYAIFUL ASY SHIDIQ","AHMAD SYAUGI","AL FACHRY KHOIRUL ANAM","ARDIANSYAH","ARY SYABAN","AURELIA PUTERI LEORIMA","AZZAHRATUS SYIFA AL AMIN","BAGAS SYAHPUTRA","BAGUS PRIAMBODO","DAMAR RAHADI","DAVIAN RASYA RAMDI","DENIZ ALKADAPI","DHIMAS KARNEZZA PRATAMA","DYAH ALDAKA WIDYATMIKA","FAHRIEL AKMAL ARSALAN","FARIS RAISYAPUTRA","GABRIEL ABIGNALE PAPENDANG","GALANG TIO RAMADHAN","GENTA ADITYA","HABIB AL-KAUTSAR","HAIDZAR FATHONI","HANIFAH SUNDARI","ILYAS HAKIM ASSYURURI","IRMA WULANDARI","JUAN FORTIUS SIHITE","KEYSEE WELAYANTI","KHAIRIL ANAM","LUTHFI HARIO NURHAKIM"],
+            'XI-TITL-2': ["KIRANA PUTRI","LUCKY FREZIA","MAULIDINA","MISYERI KORDIAZ DOMINI","MUHAMAD AIDIL PARIZI","MUHAMAD FEBRIAN","MUHAMAD NUR","MUHAMMAD ARIFIN ILHAM","MUHAMMAD AZZAM ADHWANI","MUHAMMAD RAFKA AL-AYUBI","MUHAMMAD RAFLY IHSANI","NAUFAL GHANIM","NURUL MAULIDYA","PANCA RAMADHAN RIYADI","PANJI SATRIA","RAENALDI WIDODO PRIBADI","RAFIE NAUFAL SETIAWAN","RAFIF FATHUR RAHMAN","REVAN ABIYYU ADZIN","RIDHO NAFSI SAPUTRA","RIDHO RADITYA","RIFKY DWI PRATAMA","RIZIQ PRATAMA","RIZKI KURNIAWAN","RUDY","SAMIAJI","SHELLA DWI APRILIYANI","SOPIYAN HARIRI","SYAHARANI PUTRI","SYIFA RAMADHANI","TIARA AGUSTIN","TIARA ISNARIANI","WISNU MAYSYA PRATAMA","ZAHWA AURELYA NISHA"],
+            'XI-TEI-1': ["AAISYAH RAFI'AH","ADI HARJA PANGESTU","AHMAD FAIZ","ALISA RAMADHANI PUTRI","AMMALIA NURAINI","ANINDITA DELIA PUTRI","ANISA SALSABILA","ANNAH FEBIYANTO","AQILAH WINDI SILVIA","ARVEL RAMADHAN SUWANDI","CHARISA AURELLYA","CHIGIE KEYSHA PUTRI","DAMAR CAHYADI","DESWITA AZIZAH","DEVAN KHANANDA ELFARIZI","FAKHRI NADHIF MALDINI","FAUZIA RAHMA DILLA","FERLITA DWI APRILIASARI","FITRIO OKTAFIAN","GADIEZ NADHIRA AL QISTHI","GALIH ADITYA PUTRA","INDIRA SHAFIRA MEYLANI PUTRI","JASMINE WAHYU LESTARI","JIHAN VABILA AZZAHRA","KAIS PADILAH","KHAIRUNNISA SALSABILA","KHARUNIA PUSPITA RINI","KHILDA AULIA FADIANA","KHOIRUL AKHIROH","KINTAN SEPTIANA MULYADI","KISNA ASHIFAH","LINA AJALI","MOHAMMAD FAHRI FIRMANSYAH","MUHAMAD","MUHAMAD EKA RAMDANI AL-FARIZI","MUHAMAD ROUF AL MALIK"],
+            'XI-TEI-2': ["MUHAMMAD DAFA ARIEF PUTRA","MUHAMMAD DIAZ AWALUDIN","MUHAMMAD FAHRI IBRAHIM","MUHAMMAD IKHSAN","MUHAMMAD RAKA KHANZA RAMADHAN","MUHAMMAD RASYA DHIKA RACHMANDA","NABILA FITRIYANI","NADIN APRILIA","NADYA MULIA SHAFWAH ANGGRAIENY","NAIA NABILLAH ASSYIFA","NAILA ALIFAH PUTRI","NAILA SALWA","NISSA EKA CAHYANI","NUR ANISA JAHRA","NUR AZIZAH","NUR INDRI FADILLAH","PUTRI SEKAR ARUM","PUTRI ZHAFIRA","RAFLES ZEFANYA","REISYA KHAIRIN KAMILA","REVAN AKLIL SETIANO","RIDWAN NURFATTAH","RUMAISHA PRAMESWARI ERDIANSYAH","SELLA SAGITA","SITI AISYAH","SYA'BAN MARDIKA","SYAHQUITTA KAYLA SALSABILLAH","SYIFA SABRINA ALYANDRA","UBBADILAH YUSAFI","VIRGINE FEBRIENCE YULIANTO","YOKI LANTAMA NDURU","ZAHWAN ZUNURAIN","ZAIN SELA AGUSTIN","ZAKIYAH AL AULA","ZAZKIA AZ ZAHRA HAKIM","ZULFA AL FARADHANA"],
+            'XI-TMK': ["ALMER ZAKI RAMADHAN","ANGELICA SILVIA STEFANIE","ANGGI ALYASARI","AZAHID PRAMUDYA AL GHIFAHRI","AZRIL TANAKA PAHLEVI","CHAIRUNISYAH FAUZIA","EDI SETIYAWAN","FAILAH AZZAHRA TUSYIFAH","FATURROHMAN","GEORGE MOHAMAD TJAHYADI","HAROLD METCALF DANIEL SIREGAR","HUD RAKHA SHAKI","INDAH TRIYANTI","INDYRAA LISSKA PUTRI","JIHAN AZZAHRA USSYTA","KHAYYIS BILLAWAL ROZIKIN","KHOIRUNNISA","MARHATUS SOLIHA","MEISHA KHAIRUNNISA","MUHAMMAD FATHUR ROHIM","MUHAMMAD HAIDAR AZRI","MUHAMMAD ZAVIER RIZKAYANTO","NADHIR PUTRA FAJRAB","NADIROH FITRIYANI","NADITA OKTAFIANI","NICHOLAS ARMANDO WIDIHARDJA SIHOTANG","NUKE FEBRINA PUTRI","PUTRI ALFIANI","REVIANA PUSPITASARI","RIFQA AYU ZHALSABILLA","SENDY YASHO","SYAKHI RAMADHANI","THALITA SALSABILA SHAKI","WAICY AMELLIANI PUTRI"],
+            'XI-TAV': ["ALFIA RAMADANI","ALLISYA MAKAYLA AZZAHRA","ANDI PUTRI FADILLAH","ANNA ALTAPUN NISA","ANNISA DWI AGUSTINA","ARTIA METIANA","ATARAIN ANNANZA","AUDIS AMELIA FAHRA","BENAZIR FRIDA ZAKARIA","BUNGA KESYA AURELIA","BUNGA NOVITA SARI","DAFIQ AHMAD FAJRIANSYAH","DESWITA SARI","DIAH PITALOKA","ELSA MELDA PUTRI","FAHRIA RAHMA","FINA NAILATUL IZZAH","HAERIKAL RAIHAN UMAM","KENES PUTRI NANDESWITA","KLARA RAHAYU","MIA RAMADHANI","NAZWA JAMILAH","NIDA RAIHANI","NIKITA MEDINA RAHMAWATI","NUR ZAHRA PUTRIA","PUTRI GABRYELL TESALONIKA","RIZQIYATI RABBANI","ROSALIA PRATIWI","SALSABILA ZAM","SHILVIA SHAFIRA","SILVIA KHAIRUNNISA","STEFANNY NAZWA DJARI","TASYA AULIA OKTAFIANA","VANISA MAGHFIRAH","ZAHRATUL AINI","ZEINA NAURIS SYIFA"],
+            'XI-TPL': ["ADYT FIRMANSYAH","AEIF RACHMADANI","AHMAD ASYROP MUTTAQI","AHMAD SHUJA PASHA","AMMAR ABDURRAHMAN","ARDAN JUNIYANSYAH","ARYA KHOIRY ZAHRAN","ATHAYA ROINUN NIDHAMI","AUDY PUSPITA DEWI","ERLANGGA","FAADHIL FATHUR RAHMAN","FACHRI SAPUTRA","GAGAH SATRIO","GALANG FIRMANSYAH","GALIH PRASETYO","HARLAN FADILLAH","JUNIOR FEBRIANSYAH","MOH ABDI FALAH","MOHAMAD SALMAN AL FARIZ","MUHAMAD FAHRI AKBAR GHOZALI","MUHAMAD FAIZIL ALFADILLAH","MUHAMAD KEYSA BADDILAH","MUHAMMAD DENDRI MAULANA","MUHAMMAD HAFITS","NUR ADI MACHFUD","RIDHO DANI SATRIO","RIYAN AHMAD ABI PUTRA","RIZKI FEBRIANSYAH","RIZKY PRATAMA","SATRIO BUDI SANTOSO","SETYAWAN","TANIA FULVIA","WILDAN FATH ABDILLAH","WISNU PERMANA","ZIDAN ADITYA"],
+            'XI-TKR-1': ["ABIMANYU AL FADRIANO","ABIZAR NASHWAN","ABRAHAM AKBAR TUTULING","ADHI MAS SURYO PUTRANTO","AHMAD BIMO","AHMAD FAUZAN RIJALUL FIKRI","ALDRICH BISMO","ALFAN RIZKY","ALMER FARREL","AMMAR FATIHUDDIN","ANANDA EYGA DEVA SAPUTRA","ANDIKA RAMADHONY","ARAFI AL FARABI","ARKA PERMANA","ASEP LUKMAN","BAGAS NUR RAMADHANI","BAGAS PRIHARTIANTO","DEDE ARDIANSYAH","DIMAS DIYANA","DIMAS RIZKI PRATAMA","DIMAS THORIQUL FIRDAUS","DINAR DZAKI NAUFAL WISAN","EXCEL MUHAMMAD GHEISAN DHIYYA ADDIEN","FACHRI NOFRIAWAN","FADEL AHMAD","FAKHMI ALI QHUBAISI","FAKHRI ALIANSYAH","FIQIH FADHILLAH PRASETYO","GALIH PRASETIYO","GALIH SETIAWAN","IBNU FADZLY AL FAREL","ILHAM NABIL AULIA","INTAN CAHYA CAMELIA","ISMAIL ACHMAD","IZUL HAMID","KHALIFA AKHMAR ANDRIANSAH"],
+            'XI-TKR-2': ["MUHAMAD FADILLAH","MUHAMAD FARHAN FEBRIANSYAH","MUHAMAD ZYDAN ANNAS","MUHAMMAD FADILLAH DIAN AL MAHRI","MUHAMMAD ABDUL GANI","MUHAMMAD FADLI FAIRUS","MUHAMMAD FERDY SAPUTRA","MUHAMMAD HAILI ILHAM","MUHAMMAD IRHAN","MUHAMMAD KHAERUNABIEL","MUHAMMAD MAULANA RIZKY","MUHAMMAD RASYA AFRIZAL","MUHAMMAD RAYHAN ADITYA","MUHAMMAD RIFKI MAULANA","MUHAMMAD RIFKY AKBAR","MUHAMMAD RIZKY AROYAN","MUHAMMAD SAIFUL ANAM","MUHAMMAD SEPTIAN","MUHAMMAD YASSAR ASYRAF FAISHAL","MUHAMMAD ZUL FAWWAZ SANJAYA","NAUFAL EL GHAZAM","NAUVAL DAFFA AL AZIZ","Nur Fauzan","RAFI AHMAD FAUZI","RAHARDIAN ABDI MAHESA PUTRA","RANDY AZIZ PRATAMA","REZA FAHLEVI","RIDHO NUGRAHA","RIDHO PRATAMA","RIFQY FAUZI BASKORO","SURYA HANDHIKA PRAATMADJA","SYAHMI NAUFAL HAZ","WILLYAM RENATHAN KAREPOUWAN","WISNU ADI NUGROHO","YOGA PRATAMA","YOKO FINDZA PRATAMA"],
+            'XI-TP-1': ["AFFAN ABDILLAH","AKBAR WIJAYANTO","ALDI SAPUTRA","ALIEF FATIR HASBIANSYAH","ALIF FURIDHO","ALIF JABAAR RAMADHAN","ALIF NUGRAHA PUTRA NASOCHA","ALIKA NUR SHOBAH","ALPAT ALPARIZI","ANJANI FITRIA OKTAVIANI","ANNAMAL","ARIS ZULFAHMI","ARYA ANDIKA SURYANTO","AZWAR ROSSIADI","BAHARUDIN YUSUF","CHESSA OKTA RIVALDO","DHIKA AZHAR","DIAZ SYAPUTRA","EVANSKA BINTANG NOVERELL","FADEL MUAMAR KADAFI","FADLI RADITYA ANANTA","FAHREZI APDILAH","FAHRI ANDRIYANSYAH","FARHAN ARDIANSYAH","FAZRY SUKARYADI","HAIKAL AR RASYID","HASBY CAESAR AZZAHRAN NUR","IKHSAN ALFIANSYAH","IMAM ROSYID","IQBAL JOHARI","JASMINE ANGGRAINI SAMBAC","KEISYA SRI NANDA PUTRI"],
+            'XI-TP-2': ["KIKO KIRANIA ARYANI","LULU KHOIRUNNISAH","MAULANA PUTRA RADITIYA","MOHAMMAD IKHSAN","MUAZAM YAFFI","MUCHANIF YUSUF ALISRO","MUHAMAD FABIAN AL KAFI","MUHAMAD FIRGIANSYAH","MUHAMAD HANIF FURROHMAN","MUHAMAD IBRAHIMOVIC LATING","MUHAMMAD AJI AKROM SHOFWAN","MUHAMMAD AKBAR MILLAH","MUHAMMAD ALDIANSYAH PRATAMA THAHIR","MUHAMMAD ARIQ NAUFAL","MUHAMMAD AZZAM SYAUKANI","MUHAMMAD FALAH DHIYAULHAQ","MUHAMMAD HAEDAR ELMAS","MUHAMMAD RAFA RIKAL","MUHAMMAD REFLYANSYAH NURALI","MUHAMMAD ZAKY NUR IHSAN","NAOVAL RAFIF ALFA RISQI","NOVAL HENDRA SETIAWAN","NURUL SYIFA ISWANDARI","RAFFI SETIAWAN","RAHMI MULYA SARI","RAKA FAIRUS RAMADHAN","RAMA ZULFIKAR SEPTALINO","RASYA ADITYA PUTRA PRATAMA","RAYHAN MUMTAZ","SATRIA FEBRIAN","SATRIO INGWIE ANANDO","SAYYID NOVAL","STEVEN YEREMIA MAROJAHAN SIANIPAR","YUDISTIRA PRAYOGA","ZAINURRIFQI","ZIDHAN RAKA PUTRA"],
+            'XI-DTF': ["ALIFAH APRILIA SUSILOWATI","ALIYA PUTRI DEWI","ANANDA SYAFIRA HADI","ANGGUN CITRA MUTIARA","DAHLIA","DEA AULIA AGUSTINA","FIDYA OKTAVIANI","JIHAN NURFADHILAH","KEEYZA FILLICHIA ANANDA FERGU","ATHIYAH AZKA SYAFROZA","MUSDALIFAH","NABILA NOVITA SARI","NARA SYEIKHA","NAYLA SALSABILLAH","NAZWATUNNISA","NUR AFFRILIAH","NUR FARAH FIRDAUSI WULANDARI","RATU ALIYAH HAIFA","REYKA JULIA NUR HIDAYATI","RIANA PUSPITARINI","RIZKA ANINDYA SYAFITRI","SALWA ASYIFATUL AULIA","SETYA MULYANI","SILFANI AYU NINGSIH","SISKA MELIYANI","SITI MAYSAH","SRI WAHYUNI","SUCI MAHARANI","SYAH SABILLA","WULAN APRIANI","YUWANITA AMELIA LARASATI","ZIA RAFICA LIYA","ZIVANNA AULIA SALSABILAH","ZULFAA NABILLAH ADITIA"],
+            'XI-TKP-1': ["ALIKA MESSY PUTRI","ALMAH DINIYAH YUSUF","ALVINO FERDIANSYAH","ANDJANI SUCI RAMADANI","ANNIDA KHOIRUNISA","ARTHAN SYACH","ASISKA RIZQI FITRIYANI","AULIA SANDRI AGUSTINA","BILQIS ADELIA DIANKA","BUNGA ZAHIRAH","DINAH","DINDA MAHA REZKY","DWI CAHYA LESTARI","DWI PUTRI MAHSU","IMANNUEL ROBERTO LUMBANTOBING","IMELIA SAMTARI","INTAN PUTRI WAHYUNI","IRGI ATTALA SETIAWAN","IRWAN WAHYUDIONO","IRWANSYAH","JOEVANDY PUTRA FADILLAH","KARISA","KARTIKA NURUL AENI","KAYLA KARPITALANI","KEVIN ADINATA","KHOIRUNNISA","KIRANI NAISYA AZZAHRA","LASTAMALONI FELYCIA RAJAGUKGUK","MEYDINA PARAMITHA","MEYSSA SALSABILAH","MOHAMMAD FAREL RAMADHAN","MOHAMMAD ROBBAL WIBISONO","MONICA MIKA GUTAMI","MUHAMMAD RAYHAN KALAMU"],
+            'XI-TKP-2': ["MUHAMMAD WIKY FARHANSYAH","MUTIA AFIFAH","NABILA FITRIANSYAH","NADIA NATASYAPUTRI","NADINE AZUMI NAHLA","NARESSA FITRA YUSRONI","NESSYA PUTRI","NOVI NUR AFIFAH","NOVITA DWI MARYANTI","NOVITHA LIDYASARI","NUGROHO RAMADHANU","NURI ASTARI RAMADHANI","NURUL AINI","NURUL AINI","PIRAH","PRASETYA BAGAS REVOLUSI MANIK","PRISYA AULIYANTI","PUTRI EKA ARIYANTY","RAHMAH ANISAH","RIDHO","SABRINA MAHARANI FAUZIAH","SARAH INDRI ANI","SHANAZ APRILIA","SHAVILLA ZAHRRA NOVALIA HADI PRATIWI","SHAYNA NATASYAH","SILA SUHAEMAH","SITI FAUZIAH","SUCI RAHMAWATI","SYAFIRA TRIANTI ROZIKIN","TALITA SABRINA ERLINA","TAMAMUR RIZQI","THERESYA KANAYA HUTABARAT","TIARA PUSPITA ZULIYANI","YILDIZ KAYLA AZ - ZAHRA","ZAHRA ALMIRA ILYAS","ZAHRA MUTIARA AYUNANI"],
+        };
+
+        let currentUser = null;
+        let currentUserType = null;
+        let habits = Array(7).fill(false);
+        let prayers = Array(5).fill(false);
+        let journalData = JSON.parse(localStorage.getItem('journalData')) || {};
+
+        // Initialize application
+        function init() {
+            updateDateDisplay();
+            setupEventListeners();
+            setupFloatingButton();
+            generateSampleData();
+        }
+
+        // Generate sample data for demonstration
+        function generateSampleData() {
+            if (Object.keys(journalData).length === 0) {
+                const sampleEntries = 50;
+                const today = new Date();
+                
+                for (let i = 0; i < sampleEntries; i++) {
+                    const date = new Date(today);
+                    date.setDate(date.getDate() - Math.floor(Math.random() * 30));
+                    
+                    const classes = Object.keys(studentsData);
+                    const randomClass = classes[Math.floor(Math.random() * classes.length)];
+                    const students = studentsData[randomClass];
+                    const randomStudent = students[Math.floor(Math.random() * students.length)];
+                    const religions = ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha'];
+                    const randomReligion = religions[Math.floor(Math.random() * religions.length)];
+                    
+                    const key = `${randomStudent}_${randomClass}_${date.toDateString()}`;
+                    
+                    if (!journalData[key]) {
+                        const randomHabits = Array(7).fill(false).map(() => Math.random() > 0.3);
+                        const randomPrayers = Array(5).fill(false).map(() => Math.random() > 0.2);
+                        
+                        journalData[key] = {
+                            date: date.toDateString(),
+                            studentName: randomStudent,
+                            studentClass: randomClass,
+                            studentReligion: randomReligion,
+                            habits: randomHabits,
+                            prayers: randomPrayers,
+                            wakeTime: '05:30',
+                            exerciseType: ['Jogging', 'Push up', 'Sepak bola', 'Badminton'][Math.floor(Math.random() * 4)],
+                            studyDuration: Math.floor(Math.random() * 120) + 30,
+                            socialActivity: ['Gotong royong', 'Membantu tetangga', 'Kerja bakti'][Math.floor(Math.random() * 3)],
+                            sleepTime: '21:30',
+                            submitted: true,
+                            submittedAt: date.toISOString()
+                        };
+                    }
+                }
+                
+                localStorage.setItem('journalData', JSON.stringify(journalData));
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('accountType').addEventListener('change', function() {
+                const type = this.value;
+                document.getElementById('studentFields').style.display = type === 'student' ? 'block' : 'none';
+                document.getElementById('teacherFields').style.display = type === 'teacher' ? 'block' : 'none';
+            });
+
+            document.getElementById('studentClass').addEventListener('change', function() {
+                const selectedClass = this.value;
+                const nameSelect = document.getElementById('studentName');
+                nameSelect.innerHTML = '<option value="">-- Pilih Nama --</option>';
+                
+                if (selectedClass && studentsData[selectedClass]) {
+                    studentsData[selectedClass].forEach(name => {
+                        const option = document.createElement('option');
+                        option.value = name;
+                        option.textContent = name;
+                        nameSelect.appendChild(option);
+                    });
+                }
+            });
+
+            document.getElementById('studentReligion').addEventListener('change', function() {
+                const religion = this.value;
+                const prayerTimes = document.getElementById('prayerTimes');
+                prayerTimes.style.display = religion === 'Islam' ? 'block' : 'none';
+            });
+
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('classFilter').addEventListener('change', applyFilters);
+            document.getElementById('dateFilter').addEventListener('change', applyFilters);
+            document.getElementById('religionFilter').addEventListener('change', applyFilters);
+        }
+
+        // Setup floating button
+        function setupFloatingButton() {
+            window.addEventListener('scroll', function() {
+                const floatingBtn = document.getElementById('floatingBtn');
+                if (window.pageYOffset > 300) {
+                    floatingBtn.style.display = 'flex';
+                } else {
+                    floatingBtn.style.display = 'none';
+                }
+            });
+        }
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle login
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const accountType = document.getElementById('accountType').value;
+            const password = document.getElementById('password').value;
+            
+            if (!accountType || !password) {
+                alert('❌ Mohon lengkapi semua field!');
+                return;
+            }
+
+            if (password !== 'smkn4jakarta') {
+                alert('❌ Password salah! Gunakan: smkn4jakarta');
+                return;
+            }
+
+            if (accountType === 'student') {
+                const studentClass = document.getElementById('studentClass').value;
+                const studentName = document.getElementById('studentName').value;
+                const studentReligion = document.getElementById('studentReligion').value;
+                
+                if (!studentClass || !studentName || !studentReligion) {
+                    alert('❌ Mohon lengkapi semua field siswa!');
+                    return;
+                }
+                
+                currentUser = { name: studentName, class: studentClass, religion: studentReligion };
+                currentUserType = 'student';
+                showStudentDashboard();
+            } else {
+                const teacherName = document.getElementById('teacherName').value;
+                
+                if (!teacherName) {
+                    alert('❌ Mohon pilih nama guru!');
+                    return;
+                }
+                
+                currentUser = { name: teacherName };
+                currentUserType = 'teacher';
+                showTeacherDashboard();
+            }
+        }
+
+        // Show student dashboard
+        function showStudentDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('studentDashboard').style.display = 'block';
+            document.getElementById('studentInfo').textContent = `${currentUser.name} - ${currentUser.class} (${currentUser.religion})`;
+            
+            // Show prayer times if Muslim
+            if (currentUser.religion === 'Islam') {
+                document.getElementById('prayerTimes').style.display = 'block';
+            }
+            
+            loadStudentData();
+            updateStudentHistory();
+        }
+
+        // Show teacher dashboard
+        function showTeacherDashboard() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('teacherDashboard').style.display = 'block';
+            document.getElementById('teacherInfo').textContent = currentUser.name;
+            
+            updateTeacherStats();
+            loadAllJournals();
+        }
+
+        // Update date display
+        function updateDateDisplay() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dayOptions = { weekday: 'long' };
+            
+            document.getElementById('currentDate').textContent = today.toLocaleDateString('id-ID', options);
+            document.getElementById('currentDay').textContent = `${today.toLocaleDateString('id-ID', dayOptions)} - Hari ke-${Math.ceil((today - new Date(today.getFullYear(), 0, 1)) / (1000 * 60 * 60 * 24))} tahun ${today.getFullYear()}`;
+        }
+
+        // Toggle habit
+        function toggleHabit(index) {
+            habits[index] = !habits[index];
+            const checkbox = document.querySelector(`[data-habit="${index}"]`);
+            checkbox.classList.toggle('checked', habits[index]);
+            updateProgress();
+        }
+
+        // Toggle prayer
+        function togglePrayer(index) {
+            prayers[index] = !prayers[index];
+            const checkbox = document.querySelector(`[data-prayer="${index}"]`);
+            checkbox.classList.toggle('checked', prayers[index]);
+            updatePrayerProgress();
+            
+            // Auto-check worship habit if all prayers completed
+            const completedPrayers = prayers.filter(p => p).length;
+            if (completedPrayers === 5 && !habits[1]) {
+                toggleHabit(1);
+            }
+        }
+
+        // Update prayer progress
+        function updatePrayerProgress() {
+            const completed = prayers.filter(p => p).length;
+            document.getElementById('prayerProgress').textContent = `${completed}/5 sholat`;
+        }
+
+        // Update progress with circular progress bar
+        function updateProgress() {
+            const completed = habits.filter(h => h).length;
+            const percentage = Math.round((completed / habits.length) * 100);
+            
+            document.getElementById('progressText').textContent = `${completed}/7 Kebiasaan`;
+            document.getElementById('progressPercentage').textContent = percentage + '%';
+            
+            // Update circular progress
+            const circle = document.getElementById('progressCircle');
+            const circumference = 2 * Math.PI * 40; // radius = 40
+            const offset = circumference - (percentage / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+        }
+
+        // Load student data
+        function loadStudentData() {
+            const today = new Date().toDateString();
+            const key = `${currentUser.name}_${currentUser.class}_${today}`;
+            
+            if (journalData[key]) {
+                const data = journalData[key];
+                habits = [...data.habits];
+                prayers = data.prayers ? [...data.prayers] : Array(5).fill(false);
+                
+                // Update checkboxes
+                habits.forEach((completed, index) => {
+                    const checkbox = document.querySelector(`[data-habit="${index}"]`);
+                    checkbox.classList.toggle('checked', completed);
+                });
+                
+                // Update prayer checkboxes
+                prayers.forEach((completed, index) => {
+                    const checkbox = document.querySelector(`[data-prayer="${index}"]`);
+                    if (checkbox) checkbox.classList.toggle('checked', completed);
+                });
+                
+                // Update form fields
+                if (data.wakeTime) document.getElementById('wakeTime').value = data.wakeTime;
+                if (data.exerciseType) document.getElementById('exerciseType').value = data.exerciseType;
+                if (data.studyDuration) document.getElementById('studyDuration').value = data.studyDuration;
+                if (data.socialActivity) document.getElementById('socialActivity').value = data.socialActivity;
+                if (data.sleepTime) document.getElementById('sleepTime').value = data.sleepTime;
+                
+                updateProgress();
+                updatePrayerProgress();
+            }
+        }
+
+        // Submit journal
+        function submitJournal() {
+            const today = new Date().toDateString();
+            const key = `${currentUser.name}_${currentUser.class}_${today}`;
+            
+            const data = {
+                date: today,
+                studentName: currentUser.name,
+                studentClass: currentUser.class,
+                studentReligion: currentUser.religion,
+                habits: [...habits],
+                prayers: [...prayers],
+                wakeTime: document.getElementById('wakeTime').value,
+                exerciseType: document.getElementById('exerciseType').value,
+                studyDuration: document.getElementById('studyDuration').value,
+                socialActivity: document.getElementById('socialActivity').value,
+                sleepTime: document.getElementById('sleepTime').value,
+                submitted: true,
+                submittedAt: new Date().toISOString()
+            };
+            
+            journalData[key] = data;
+            localStorage.setItem('journalData', JSON.stringify(journalData));
+            
+            alert('✅ Jurnal berhasil dikirim ke guru! Data telah tersimpan.');
+            updateStudentHistory();
+        }
+
+        // Export to PDF (Student)
+        function exportStudentPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Header with school logo area
+            doc.setFillColor(102, 126, 234);
+            doc.rect(0, 0, 210, 40, 'F');
+            
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(18);
+            doc.text('JURNAL 7 KEBIASAAN ANAK INDONESIA HEBAT', 105, 15, { align: 'center' });
+            doc.setFontSize(14);
+            doc.text('SMKN 4 Jakarta', 105, 25, { align: 'center' });
+            doc.setFontSize(10);
+            doc.text('Jl. Rorotan IV No.1', 105, 32, { align: 'center' });
+            
+            // Reset text color
+            doc.setTextColor(0, 0, 0);
+            
+            // Student info
+            doc.setFontSize(12);
+            doc.text('INFORMASI SISWA', 20, 55);
+            doc.line(20, 57, 190, 57);
+            
+            doc.setFontSize(11);
+            doc.text(`Nama Siswa: ${currentUser.name}`, 20, 67);
+            doc.text(`Kelas: ${currentUser.class}`, 20, 75);
+            doc.text(`Agama: ${currentUser.religion}`, 20, 83);
+            doc.text(`Tanggal: ${new Date().toLocaleDateString('id-ID')}`, 20, 91);
+            
+            // Habits data
+            const habitNames = [
+                'Bangun Pagi (sebelum 06.00)',
+                'Beribadah sesuai agama',
+                'Berolahraga (min. 30 menit)',
+                'Makan sehat dan bergizi',
+                'Gemar belajar',
+                'Bermasyarakat',
+                'Tidur cepat (sebelum 22.00)'
+            ];
+            
+            doc.text('KEBIASAAN HARIAN', 20, 105);
+            doc.line(20, 107, 190, 107);
+            
+            let yPos = 117;
+            habits.forEach((completed, index) => {
+                const status = completed ? '✓ SELESAI' : '✗ BELUM';
+                const color = completed ? [34, 197, 94] : [239, 68, 68];
+                
+                doc.setTextColor(0, 0, 0);
+                doc.text(`${index + 1}. ${habitNames[index]}`, 25, yPos);
+                doc.setTextColor(...color);
+                doc.text(status, 150, yPos);
+                yPos += 8;
+            });
+            
+            // Prayer data for Muslims
+            if (currentUser.religion === 'Islam') {
+                doc.setTextColor(0, 0, 0);
+                yPos += 5;
+                doc.text('SHOLAT HARIAN', 20, yPos);
+                doc.line(20, yPos + 2, 190, yPos + 2);
+                yPos += 12;
+                
+                const prayerNames = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'];
+                prayers.forEach((completed, index) => {
+                    const status = completed ? '✓ SELESAI' : '✗ BELUM';
+                    const color = completed ? [34, 197, 94] : [239, 68, 68];
+                    
+                    doc.setTextColor(0, 0, 0);
+                    doc.text(`• Sholat ${prayerNames[index]}`, 25, yPos);
+                    doc.setTextColor(...color);
+                    doc.text(status, 150, yPos);
+                    yPos += 8;
+                });
+            }
+            
+            // Progress summary
+            const completed = habits.filter(h => h).length;
+            const percentage = Math.round((completed / habits.length) * 100);
+            
+            doc.setTextColor(0, 0, 0);
+            yPos += 10;
+            doc.text('RINGKASAN PROGRESS', 20, yPos);
+            doc.line(20, yPos + 2, 190, yPos + 2);
+            yPos += 12;
+            
+            doc.setFontSize(14);
+            doc.text(`Kebiasaan Selesai: ${completed}/7 (${percentage}%)`, 25, yPos);
+            
+            // Footer
+            doc.setFontSize(8);
+            doc.setTextColor(128, 128, 128);
+            doc.text(`Dicetak pada: ${new Date().toLocaleString('id-ID')}`, 20, 280);
+            doc.text('Aplikasi Jurnal 7 Kebiasaan - SMKN 4 Jakarta', 105, 285, { align: 'center' });
+            
+            doc.save(`Jurnal_${currentUser.name}_${new Date().toLocaleDateString('id-ID').replace(/\//g, '-')}.pdf`);
+        }
+
+        // Export Teacher PDF
+        function exportTeacherPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('landscape');
+            
+            // Header
+            doc.setFillColor(102, 126, 234);
+            doc.rect(0, 0, 297, 30, 'F');
+            
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(16);
+            doc.text('LAPORAN JURNAL 7 KEBIASAAN SISWA INDONESIA HEBAT', 148, 12, { align: 'center' });
+            doc.setFontSize(12);
+            doc.text('SMKN 4 Jakarta', 148, 20, { align: 'center' });
+            doc.setFontSize(8);
+            doc.text(`Tanggal Cetak: ${new Date().toLocaleDateString('id-ID')} | Guru: ${currentUser.name}`, 148, 26, { align: 'center' });
+            
+            // Get filtered data
+            const classFilter = document.getElementById('classFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+            const religionFilter = document.getElementById('religionFilter').value;
+            
+            let allEntries = Object.values(journalData).filter(entry => entry.submitted);
+            
+            if (classFilter) allEntries = allEntries.filter(entry => entry.studentClass === classFilter);
+            if (dateFilter) {
+                const filterDate = new Date(dateFilter).toDateString();
+                allEntries = allEntries.filter(entry => entry.date === filterDate);
+            }
+            if (religionFilter) allEntries = allEntries.filter(entry => entry.studentReligion === religionFilter);
+            
+            // Table data
+            const tableData = allEntries.map(entry => {
+                const completed = entry.habits.filter(h => h).length;
+                return [
+                    new Date(entry.date).toLocaleDateString('id-ID'),
+                    entry.studentName,
+                    entry.studentClass,
+                    entry.studentReligion,
+                    entry.habits[0] ? '✓' : '✗',
+                    entry.habits[1] ? '✓' : '✗',
+                    entry.habits[2] ? '✓' : '✗',
+                    entry.habits[3] ? '✓' : '✗',
+                    entry.habits[4] ? '✓' : '✗',
+                    entry.habits[5] ? '✓' : '✗',
+                    entry.habits[6] ? '✓' : '✗',
+                    `${completed}/7`
+                ];
+            });
+            
+            doc.setTextColor(0, 0, 0);
+            doc.autoTable({
+                head: [['Tanggal', 'Nama Siswa', 'Kelas', 'Agama', 'Bangun Pagi', 'Beribadah', 'Olahraga', 'Makan Sehat', 'Belajar', 'Bermasyarakat', 'Tidur Cepat', 'Skor']],
+                body: tableData,
+                startY: 40,
+                styles: { 
+                    fontSize: 7,
+                    cellPadding: 2
+                },
+                headStyles: { 
+                    fillColor: [102, 126, 234],
+                    textColor: [255, 255, 255],
+                    fontStyle: 'bold'
+                },
+                alternateRowStyles: {
+                    fillColor: [248, 250, 252]
+                }
+            });
+            
+            // Summary statistics
+            const finalY = doc.lastAutoTable.finalY + 10;
+            doc.setFontSize(10);
+            doc.text('RINGKASAN STATISTIK:', 20, finalY);
+            doc.text(`Total Data: ${allEntries.length}`, 20, finalY + 8);
+            
+            if (allEntries.length > 0) {
+                const totalCompletion = allEntries.reduce((sum, entry) => sum + entry.habits.filter(h => h).length, 0);
+                const avgCompletion = Math.round((totalCompletion / (allEntries.length * 7)) * 100);
+                doc.text(`Rata-rata Penyelesaian: ${avgCompletion}%`, 20, finalY + 16);
+            }
+            
+            doc.save(`Laporan_Jurnal_Siswa_${new Date().toLocaleDateString('id-ID').replace(/\//g, '-')}.pdf`);
+        }
+
+        // Update student history
+        function updateStudentHistory() {
+            const tbody = document.getElementById('studentHistoryTable');
+            tbody.innerHTML = '';
+            
+            const studentEntries = Object.values(journalData).filter(entry => 
+                entry.studentName === currentUser.name && entry.studentClass === currentUser.class
+            ).sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            studentEntries.slice(0, 10).forEach(entry => {
+                const row = document.createElement('tr');
+                row.className = 'border-b hover:bg-gray-50 transition-colors';
+                
+                const completed = entry.habits.filter(h => h).length;
+                const percentage = Math.round((completed / 7) * 100);
+                
+                row.innerHTML = `
+                    <td class="p-4 font-medium">${new Date(entry.date).toLocaleDateString('id-ID')}</td>
+                    <td class="p-4 text-center">${entry.habits[0] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[1] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[2] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[3] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[4] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[5] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[6] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${percentage >= 80 ? 'bg-green-100 text-green-800' : percentage >= 60 ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}">
+                            ${completed}/7 (${percentage}%)
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            if (studentEntries.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="9" class="p-8 text-center text-gray-500">
+                        <div class="text-4xl mb-2">📝</div>
+                        Belum ada data jurnal. Mulai isi jurnal harian Anda!
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        // Update teacher stats
+        function updateTeacherStats() {
+            const allEntries = Object.values(journalData);
+            const today = new Date().toDateString();
+            
+            // Total students (unique)
+            const uniqueStudents = new Set(allEntries.map(entry => `${entry.studentName}_${entry.studentClass}`));
+            document.getElementById('totalStudents').textContent = uniqueStudents.size;
+            
+            // Today submissions
+            const todayEntries = allEntries.filter(entry => entry.date === today && entry.submitted);
+            document.getElementById('todaySubmissions').textContent = todayEntries.length;
+            
+            // Average completion
+            if (allEntries.length > 0) {
+                const totalCompletion = allEntries.reduce((sum, entry) => {
+                    return sum + entry.habits.filter(h => h).length;
+                }, 0);
+                const avgCompletion = Math.round((totalCompletion / (allEntries.length * 7)) * 100);
+                document.getElementById('averageCompletion').textContent = avgCompletion + '%';
+            }
+            
+            // Active classes
+            const activeClasses = new Set(allEntries.map(entry => entry.studentClass));
+            document.getElementById('activeClasses').textContent = activeClasses.size;
+        }
+
+        // Load all journals
+        function loadAllJournals() {
+            const tbody = document.getElementById('allJournalsTable');
+            tbody.innerHTML = '';
+            
+            const allEntries = Object.values(journalData)
+                .filter(entry => entry.submitted)
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            allEntries.slice(0, 100).forEach(entry => {
+                const row = document.createElement('tr');
+                row.className = 'border-b hover:bg-gray-50 transition-colors';
+                
+                const completed = entry.habits.filter(h => h).length;
+                const percentage = Math.round((completed / 7) * 100);
+                
+                row.innerHTML = `
+                    <td class="p-4 font-medium">${new Date(entry.date).toLocaleDateString('id-ID')}</td>
+                    <td class="p-4 font-medium">${entry.studentName}</td>
+                    <td class="p-4">${entry.studentClass}</td>
+                    <td class="p-4">${entry.studentReligion}</td>
+                    <td class="p-4 text-center">${entry.habits[0] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[1] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[2] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[3] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[4] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[5] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[6] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${percentage >= 80 ? 'bg-green-100 text-green-800' : percentage >= 60 ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}">
+                            ${completed}/7
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            if (allEntries.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="12" class="p-8 text-center text-gray-500">
+                        <div class="text-4xl mb-2">📊</div>
+                        Belum ada data jurnal siswa yang masuk.
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const classFilter = document.getElementById('classFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+            const religionFilter = document.getElementById('religionFilter').value;
+            
+            const tbody = document.getElementById('allJournalsTable');
+            tbody.innerHTML = '';
+            
+            let filteredEntries = Object.values(journalData).filter(entry => entry.submitted);
+            
+            if (classFilter) {
+                filteredEntries = filteredEntries.filter(entry => entry.studentClass === classFilter);
+            }
+            
+            if (dateFilter) {
+                const filterDate = new Date(dateFilter).toDateString();
+                filteredEntries = filteredEntries.filter(entry => entry.date === filterDate);
+            }
+            
+            if (religionFilter) {
+                filteredEntries = filteredEntries.filter(entry => entry.studentReligion === religionFilter);
+            }
+            
+            filteredEntries.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            filteredEntries.forEach(entry => {
+                const row = document.createElement('tr');
+                row.className = 'border-b hover:bg-gray-50 transition-colors';
+                
+                const completed = entry.habits.filter(h => h).length;
+                const percentage = Math.round((completed / 7) * 100);
+                
+                row.innerHTML = `
+                    <td class="p-4 font-medium">${new Date(entry.date).toLocaleDateString('id-ID')}</td>
+                    <td class="p-4 font-medium">${entry.studentName}</td>
+                    <td class="p-4">${entry.studentClass}</td>
+                    <td class="p-4">${entry.studentReligion}</td>
+                    <td class="p-4 text-center">${entry.habits[0] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[1] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[2] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[3] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[4] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[5] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">${entry.habits[6] ? '✅' : '❌'}</td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${percentage >= 80 ? 'bg-green-100 text-green-800' : percentage >= 60 ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}">
+                            ${completed}/7
+                        </span>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            if (filteredEntries.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="12" class="p-8 text-center text-gray-500">
+                        <div class="text-4xl mb-2">🔍</div>
+                        Tidak ada data yang sesuai dengan filter yang dipilih.
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('🚪 Yakin ingin keluar dari aplikasi?')) {
+                currentUser = null;
+                currentUserType = null;
+                habits = Array(7).fill(false);
+                prayers = Array(5).fill(false);
+                
+                document.getElementById('studentDashboard').style.display = 'none';
+                document.getElementById('teacherDashboard').style.display = 'none';
+                document.getElementById('loginPage').style.display = 'block';
+                
+                // Reset form
+                document.getElementById('loginForm').reset();
+                document.getElementById('studentFields').style.display = 'none';
+                document.getElementById('teacherFields').style.display = 'none';
+                document.getElementById('prayerTimes').style.display = 'none';
+                
+                // Reset checkboxes
+                document.querySelectorAll('.checkbox-modern').forEach(cb => cb.classList.remove('checked'));
+                document.querySelectorAll('.prayer-checkbox').forEach(cb => cb.classList.remove('checked'));
+            }
+        }
+
+        // Initialize app when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978b44dfb052df8b',t:'MTc1Njc5Nzg4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
+
+
