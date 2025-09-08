@@ -1119,6 +1119,35 @@
             
             doc.setFontSize(14);
             doc.text(`Kebiasaan Selesai: ${completed}/7 (${percentage}%)`, 25, yPos);
+
+            // --- START ADDITION FOR SIGNATURES ---
+            // Check if there's enough space for signatures, otherwise add a new page
+            if (yPos > 220) { // Adjust this value based on your content and desired layout
+                doc.addPage();
+                yPos = 30; // Start yPos on new page
+            } else {
+                yPos += 20; // Add some space after progress summary
+            }
+
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Tanda Tangan:', 20, yPos);
+            yPos += 10;
+
+            // Parent/Guardian Signature
+            doc.text('Orang Tua / Wali', 30, yPos);
+            doc.line(30, yPos + 25, 80, yPos + 25); // Signature line
+            doc.setFontSize(10);
+            doc.text('(..................................................)', 30, yPos + 30);
+            
+            // Teacher Signature
+            doc.setFontSize(12);
+            doc.text('Guru Wali', 130, yPos);
+            doc.line(130, yPos + 25, 180, yPos + 25); // Signature line
+            doc.setFontSize(10);
+            // You might want to dynamically get the homeroom teacher's name here
+            doc.text('(..................................................)', 130, yPos + 30); 
+            // --- END ADDITION FOR SIGNATURES ---
             
             // Footer
             doc.setFontSize(8);
@@ -1430,6 +1459,7 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'978b44dfb052df8b',t:'MTc1Njc5Nzg4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
